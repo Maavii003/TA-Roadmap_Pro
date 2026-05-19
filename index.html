@@ -1,0 +1,1342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Smart Money Mastery — 30-Day Roadmap</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0a0c10;
+    --ink-light: #12161e;
+    --ink-mid: #1a1f2b;
+    --charcoal: #2a2f3e;
+    --charcoal-light: #3a4055;
+    --purple: #7b2fff;
+    --purple-dim: #5a1fcc;
+    --purple-glow: rgba(123,47,255,0.18);
+    --green: #00ff6a;
+    --green-dim: #00cc55;
+    --green-glow: rgba(0,255,106,0.15);
+    --text: #e8eaf0;
+    --text-dim: #8a90a8;
+    --text-muted: #555b72;
+    --border: rgba(123,47,255,0.2);
+    --border-green: rgba(0,255,106,0.2);
+  }
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--ink);
+    color: var(--text);
+    font-family: 'Outfit', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* ─── NOISE OVERLAY ─── */
+  body::before {
+    content:'';
+    position:fixed; inset:0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events:none; z-index:9999; opacity:0.4;
+  }
+
+  /* ─── AMBIENT GLOW ─── */
+  .ambient {
+    position:fixed; pointer-events:none; z-index:0;
+    border-radius:50%; filter:blur(120px); opacity:0.07;
+  }
+  .ambient-1 { width:600px; height:600px; background:var(--purple); top:-200px; right:-200px; }
+  .ambient-2 { width:500px; height:500px; background:var(--green); bottom:-200px; left:-100px; }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed; top:0; left:0; right:0; z-index:1000;
+    display:flex; align-items:center; justify-content:space-between;
+    padding: 0 40px;
+    height: 64px;
+    background: rgba(10,12,16,0.85);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.4rem;
+    letter-spacing: 3px;
+    color: var(--green);
+    text-shadow: 0 0 20px var(--green-glow);
+  }
+
+  .nav-logo span { color: var(--purple); }
+
+  .nav-menu {
+    display:flex; align-items:center; gap:8px;
+    list-style:none;
+  }
+
+  .nav-menu a {
+    display:block;
+    padding: 7px 16px;
+    border-radius: 6px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    color: var(--text-dim);
+    text-decoration: none;
+    transition: all 0.2s;
+    border: 1px solid transparent;
+  }
+
+  .nav-menu a:hover,
+  .nav-menu a.active {
+    color: var(--green);
+    border-color: var(--border-green);
+    background: var(--green-glow);
+  }
+
+  /* ─── HERO ─── */
+  .hero {
+    position:relative; z-index:1;
+    padding: 140px 40px 80px;
+    text-align:center;
+  }
+
+  .hero-tag {
+    display:inline-block;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 3px;
+    color: var(--green);
+    background: var(--green-glow);
+    border: 1px solid var(--border-green);
+    padding: 6px 16px;
+    border-radius: 100px;
+    margin-bottom: 24px;
+  }
+
+  .hero h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(3rem, 8vw, 6.5rem);
+    line-height: 0.95;
+    letter-spacing: 4px;
+    background: linear-gradient(135deg, #fff 30%, var(--purple) 70%, var(--green) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 20px;
+  }
+
+  .hero p {
+    font-size: 1.05rem;
+    color: var(--text-dim);
+    max-width: 560px;
+    margin: 0 auto 40px;
+    line-height: 1.7;
+    font-weight: 300;
+  }
+
+  /* ─── PROGRESS BAR ─── */
+  .progress-container {
+    max-width: 700px;
+    margin: 0 auto 60px;
+    background: var(--ink-mid);
+    border-radius: 100px;
+    height: 8px;
+    border: 1px solid var(--border);
+    overflow: hidden;
+  }
+
+  .progress-bar {
+    height: 100%;
+    border-radius: 100px;
+    background: linear-gradient(90deg, var(--purple), var(--green));
+    transition: width 0.6s cubic-bezier(0.4,0,0.2,1);
+    box-shadow: 0 0 12px var(--green-glow);
+  }
+
+  .progress-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    text-align:center;
+    margin-bottom: 10px;
+    letter-spacing: 1px;
+  }
+
+  /* ─── STATS BAR ─── */
+  .stats-bar {
+    display:flex; justify-content:center; gap:40px;
+    margin-bottom: 60px;
+    flex-wrap: wrap;
+  }
+
+  .stat-item {
+    text-align:center;
+  }
+
+  .stat-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.2rem;
+    letter-spacing: 2px;
+    color: var(--green);
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    letter-spacing: 2px;
+    font-weight: 500;
+    margin-top: 4px;
+  }
+
+  /* ─── SECTIONS ─── */
+  section {
+    position:relative; z-index:1;
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 24px 80px;
+  }
+
+  .section-header {
+    display:flex; align-items:center; gap:16px;
+    margin-bottom: 40px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .section-badge {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 2px;
+    padding: 5px 12px;
+    border-radius: 4px;
+    font-weight: 700;
+    flex-shrink:0;
+  }
+
+  .badge-sm { background: var(--purple-glow); color: var(--purple); border: 1px solid rgba(123,47,255,0.4); }
+  .badge-htf { background: rgba(255,170,0,0.1); color: #ffaa00; border: 1px solid rgba(255,170,0,0.3); }
+  .badge-ltf { background: var(--green-glow); color: var(--green); border: 1px solid var(--border-green); }
+
+  .section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2rem;
+    letter-spacing: 3px;
+  }
+
+  /* ─── DAY CARDS ─── */
+  .days-grid {
+    display:flex; flex-direction:column; gap:16px;
+  }
+
+  .day-card {
+    background: var(--ink-light);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+
+  .day-card:hover {
+    border-color: rgba(123,47,255,0.5);
+    box-shadow: 0 4px 30px rgba(123,47,255,0.08);
+  }
+
+  .day-card.completed {
+    border-color: rgba(0,255,106,0.35);
+    box-shadow: 0 2px 20px rgba(0,255,106,0.06);
+  }
+
+  .day-header {
+    display:flex; align-items:center; gap:16px;
+    padding: 18px 22px;
+    cursor:pointer;
+    user-select:none;
+  }
+
+  .day-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.8rem;
+    letter-spacing: 2px;
+    color: var(--charcoal-light);
+    min-width: 64px;
+    line-height:1;
+    transition: color 0.2s;
+  }
+
+  .day-card.completed .day-num { color: var(--green); }
+
+  .day-info { flex:1; }
+
+  .day-title {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 4px;
+    color: var(--text);
+  }
+
+  .day-tag {
+    font-size: 0.7rem;
+    font-family: 'Space Mono', monospace;
+    letter-spacing: 1px;
+    color: var(--text-muted);
+    font-weight:400;
+  }
+
+  .day-checkbox {
+    width: 26px; height: 26px;
+    border-radius: 50%;
+    border: 2px solid var(--charcoal-light);
+    background: transparent;
+    cursor:pointer;
+    display:flex; align-items:center; justify-content:center;
+    transition: all 0.25s cubic-bezier(0.4,0,0.2,1);
+    flex-shrink:0;
+  }
+
+  .day-checkbox:hover { border-color: var(--green); }
+  .day-checkbox.checked { background: var(--green); border-color: var(--green); }
+
+  .day-checkbox svg { display:none; }
+  .day-checkbox.checked svg { display:block; }
+
+  .day-toggle {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    transition: transform 0.25s;
+    flex-shrink:0;
+  }
+
+  .day-card.open .day-toggle { transform: rotate(180deg); }
+
+  /* ─── DAY BODY ─── */
+  .day-body {
+    display:none;
+    padding: 0 22px 22px;
+    border-top: 1px solid var(--border);
+    animation: slideDown 0.2s ease;
+  }
+
+  .day-card.open .day-body { display:block; }
+
+  @keyframes slideDown {
+    from { opacity:0; transform:translateY(-6px); }
+    to { opacity:1; transform:translateY(0); }
+  }
+
+  .day-sections {
+    display:grid; grid-template-columns:1fr 1fr 1fr;
+    gap:14px; margin-top:16px;
+  }
+
+  @media(max-width:680px) {
+    .day-sections { grid-template-columns:1fr; }
+  }
+
+  .day-section-box {
+    background: var(--ink-mid);
+    border-radius: 8px;
+    padding: 14px 16px;
+    border: 1px solid rgba(255,255,255,0.05);
+  }
+
+  .dsb-label {
+    font-size: 0.6rem;
+    font-family: 'Space Mono', monospace;
+    letter-spacing: 2px;
+    color: var(--purple);
+    margin-bottom: 8px;
+    font-weight:700;
+  }
+
+  .dsb-label.practice { color: var(--green); }
+  .dsb-label.focus { color: #ffaa00; }
+
+  .day-section-box p, .day-section-box li {
+    font-size: 0.83rem;
+    color: var(--text-dim);
+    line-height: 1.65;
+    font-weight:300;
+  }
+
+  .day-section-box ul { padding-left:14px; }
+
+  .time-pill {
+    display:inline-block;
+    font-family:'Space Mono', monospace;
+    font-size:0.65rem;
+    letter-spacing:1px;
+    background: var(--charcoal);
+    color: var(--text-muted);
+    padding: 3px 10px;
+    border-radius:100px;
+    margin-top: 12px;
+  }
+
+  /* ─── ALARM PANEL ─── */
+  .alarm-panel {
+    position:fixed; bottom:24px; right:24px;
+    z-index: 800;
+    background: var(--ink-mid);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    width: 300px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+    overflow:hidden;
+    transition: transform 0.3s, opacity 0.3s;
+  }
+
+  .alarm-panel.hidden { transform:translateY(20px); opacity:0; pointer-events:none; }
+
+  .alarm-header {
+    display:flex; align-items:center; justify-content:space-between;
+    padding: 14px 18px;
+    background: var(--charcoal);
+    border-bottom: 1px solid var(--border);
+    cursor:pointer;
+  }
+
+  .alarm-title {
+    font-family:'Space Mono', monospace;
+    font-size:0.72rem;
+    letter-spacing:2px;
+    color: var(--green);
+    font-weight:700;
+  }
+
+  .alarm-close {
+    font-size:1rem;
+    color: var(--text-muted);
+    background:none; border:none;
+    cursor:pointer;
+  }
+
+  .alarm-body { padding:18px; }
+
+  .alarm-label {
+    font-size:0.7rem;
+    color: var(--text-muted);
+    font-family:'Space Mono',monospace;
+    letter-spacing:1px;
+    margin-bottom:6px;
+    display:block;
+  }
+
+  .alarm-msg-input {
+    width:100%;
+    background: var(--ink);
+    border: 1px solid var(--border);
+    border-radius:8px;
+    padding:10px 12px;
+    font-family:'Outfit',sans-serif;
+    font-size:0.85rem;
+    color: var(--text);
+    margin-bottom:14px;
+    resize:none;
+    height:56px;
+    outline:none;
+    transition: border-color 0.2s;
+  }
+
+  .alarm-msg-input:focus { border-color: var(--purple); }
+
+  .alarm-time-row {
+    display:flex; gap:8px; margin-bottom:14px; align-items:center;
+  }
+
+  .alarm-time-input {
+    flex:1;
+    background: var(--ink);
+    border: 1px solid var(--border);
+    border-radius:8px;
+    padding:10px 12px;
+    font-family:'Space Mono',monospace;
+    font-size:0.9rem;
+    color: var(--green);
+    outline:none;
+    transition: border-color 0.2s;
+  }
+
+  .alarm-time-input:focus { border-color: var(--purple); }
+
+  .ampm-select {
+    background: var(--ink);
+    border: 1px solid var(--border);
+    border-radius:8px;
+    padding: 10px 14px;
+    font-family:'Space Mono',monospace;
+    font-size:0.85rem;
+    color: var(--purple);
+    outline:none;
+    cursor:pointer;
+    transition: border-color 0.2s;
+  }
+
+  .ampm-select:focus { border-color: var(--purple); }
+
+  .alarm-set-btn {
+    width:100%;
+    background: linear-gradient(135deg, var(--purple), var(--purple-dim));
+    border:none;
+    border-radius:8px;
+    padding:11px;
+    font-family:'Outfit',sans-serif;
+    font-size:0.85rem;
+    font-weight:700;
+    color:#fff;
+    cursor:pointer;
+    letter-spacing:1px;
+    transition: opacity 0.2s, transform 0.1s;
+  }
+
+  .alarm-set-btn:hover { opacity:0.9; transform:scale(0.99); }
+
+  .alarm-status {
+    font-size:0.72rem;
+    color:var(--green);
+    text-align:center;
+    margin-top:10px;
+    font-family:'Space Mono',monospace;
+    min-height:16px;
+  }
+
+  .alarm-fab {
+    position:fixed; bottom:24px; right:24px; z-index:801;
+    background: linear-gradient(135deg, var(--purple), var(--purple-dim));
+    border:none; border-radius:50%;
+    width:52px; height:52px;
+    display:flex; align-items:center; justify-content:center;
+    cursor:pointer;
+    box-shadow: 0 4px 20px rgba(123,47,255,0.4);
+    font-size:1.4rem;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .alarm-fab:hover { transform:scale(1.1); box-shadow: 0 6px 30px rgba(123,47,255,0.6); }
+  .alarm-fab.hidden { display:none; }
+
+  /* ─── MOTIVATION TOAST ─── */
+  .moto-toast {
+    position:fixed; top:80px; left:50%; transform:translateX(-50%);
+    z-index:900;
+    background: linear-gradient(135deg, var(--ink-mid), var(--charcoal));
+    border: 1px solid var(--purple);
+    border-radius:14px;
+    padding:18px 28px;
+    max-width:420px; width:90%;
+    box-shadow: 0 8px 40px rgba(123,47,255,0.25);
+    animation: toastIn 0.5s ease forwards;
+    text-align:center;
+  }
+
+  .moto-toast.fading {
+    animation: toastOut 3s ease forwards;
+  }
+
+  @keyframes toastIn {
+    from { opacity:0; transform:translateX(-50%) translateY(-10px); }
+    to { opacity:1; transform:translateX(-50%) translateY(0); }
+  }
+
+  @keyframes toastOut {
+    0% { opacity:1; }
+    70% { opacity:1; }
+    100% { opacity:0; pointer-events:none; }
+  }
+
+  .moto-quote {
+    font-size:0.92rem;
+    font-style:italic;
+    color:var(--text);
+    line-height:1.65;
+    margin-bottom:8px;
+  }
+
+  .moto-attr {
+    font-size:0.7rem;
+    font-family:'Space Mono',monospace;
+    color:var(--purple);
+    letter-spacing:1px;
+  }
+
+  .moto-dismiss {
+    position:absolute; top:10px; right:14px;
+    background:none; border:none;
+    color:var(--text-muted); font-size:0.9rem;
+    cursor:pointer;
+  }
+
+  /* ─── NOTIFICATION TOAST ─── */
+  .notif-toast {
+    position:fixed; top:80px; right:24px; z-index:1000;
+    background: var(--ink-mid);
+    border: 1px solid var(--green);
+    border-radius:12px;
+    padding:16px 20px;
+    max-width:300px;
+    box-shadow: 0 8px 30px rgba(0,255,106,0.15);
+    display:none;
+    animation: slideLeft 0.4s ease;
+  }
+
+  @keyframes slideLeft {
+    from { opacity:0; transform:translateX(20px); }
+    to { opacity:1; transform:translateX(0); }
+  }
+
+  .notif-title {
+    font-size:0.72rem;
+    font-family:'Space Mono',monospace;
+    letter-spacing:2px;
+    color:var(--green);
+    margin-bottom:6px;
+  }
+
+  .notif-msg {
+    font-size:0.85rem;
+    color:var(--text);
+    line-height:1.5;
+  }
+
+  /* ─── ALARM RINGING ─── */
+  .ring-overlay {
+    position:fixed; inset:0; z-index:2000;
+    background: rgba(10,12,16,0.95);
+    display:none;
+    flex-direction:column; align-items:center; justify-content:center;
+    text-align:center;
+  }
+
+  .ring-overlay.active { display:flex; animation: pulseRing 1s ease infinite alternate; }
+
+  @keyframes pulseRing {
+    from { background: rgba(10,12,16,0.9); }
+    to { background: rgba(123,47,255,0.12); }
+  }
+
+  .ring-icon { font-size:5rem; margin-bottom:24px; animation: ringBounce 0.5s ease infinite alternate; }
+
+  @keyframes ringBounce {
+    from { transform: rotate(-15deg); }
+    to { transform: rotate(15deg); }
+  }
+
+  .ring-msg {
+    font-family:'Bebas Neue',sans-serif;
+    font-size:2.5rem;
+    letter-spacing:4px;
+    color:var(--green);
+    margin-bottom:12px;
+  }
+
+  .ring-sub { font-size:0.9rem; color:var(--text-dim); margin-bottom:32px; }
+
+  .ring-dismiss {
+    background: var(--green);
+    color: var(--ink);
+    border:none;
+    border-radius:8px;
+    padding:12px 32px;
+    font-family:'Outfit',sans-serif;
+    font-weight:700;
+    font-size:1rem;
+    cursor:pointer;
+    letter-spacing:1px;
+    transition: opacity 0.2s;
+  }
+
+  /* ─── FOOTER ─── */
+  footer {
+    position:relative; z-index:1;
+    text-align:center;
+    padding:40px;
+    border-top: 1px solid var(--border);
+    font-size:0.75rem;
+    color:var(--text-muted);
+    font-family:'Space Mono',monospace;
+    letter-spacing:1px;
+  }
+
+  /* ─── SCROLLBAR ─── */
+  ::-webkit-scrollbar { width:6px; }
+  ::-webkit-scrollbar-track { background: var(--ink); }
+  ::-webkit-scrollbar-thumb { background: var(--charcoal-light); border-radius:3px; }
+</style>
+</head>
+<body>
+
+<!-- ambient glow -->
+<div class="ambient ambient-1"></div>
+<div class="ambient ambient-2"></div>
+
+<!-- ─── NAV ─── -->
+<nav>
+  <div class="nav-logo">SMART<span>MONEY</span></div>
+  <ul class="nav-menu">
+    <li><a href="#smart-money" onclick="setActive(this)">Smart Money</a></li>
+    <li><a href="#htf" onclick="setActive(this)">Higher Timeframe</a></li>
+    <li><a href="#ltf" onclick="setActive(this)">Lower Timeframe</a></li>
+  </ul>
+</nav>
+
+<!-- ─── HERO ─── -->
+<div class="hero">
+  <div class="hero-tag">▸ 30-DAY MASTERY PROGRAM</div>
+  <h1>Crypto Technical<br>Analysis</h1>
+  <p>From complete beginner to pro-level smart money trader. 1h 30m per day, structured, focused, relentless.</p>
+
+  <div class="progress-label" id="progressLabel">0 / 30 DAYS COMPLETED</div>
+  <div class="progress-container">
+    <div class="progress-bar" id="progressBar" style="width:0%"></div>
+  </div>
+
+  <div class="stats-bar">
+    <div class="stat-item">
+      <div class="stat-num" id="statDone">0</div>
+      <div class="stat-label">DAYS DONE</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">30</div>
+      <div class="stat-label">TOTAL DAYS</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num" id="statLeft">30</div>
+      <div class="stat-label">DAYS LEFT</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num" id="statHours">0h</div>
+      <div class="stat-label">HRS LOGGED</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════
+     SECTION 1 — SMART MONEY (Outline 1, Days 1–16)
+═══════════════════════════════════════════════════ -->
+<section id="smart-money">
+  <div class="section-header">
+    <span class="section-badge badge-sm">PHASE 01</span>
+    <h2 class="section-title">Smart Money Concepts</h2>
+  </div>
+  <div class="days-grid" id="grid-sm"></div>
+</section>
+
+<!-- ══════════════════════════════════════════════════
+     SECTION 2 — HTF (Outline 2, Days 17–23)
+═══════════════════════════════════════════════════ -->
+<section id="htf">
+  <div class="section-header">
+    <span class="section-badge badge-htf">PHASE 02</span>
+    <h2 class="section-title">Higher Timeframe Application</h2>
+  </div>
+  <div class="days-grid" id="grid-htf"></div>
+</section>
+
+<!-- ══════════════════════════════════════════════════
+     SECTION 3 — LTF (Outline 3, Days 24–30)
+═══════════════════════════════════════════════════ -->
+<section id="ltf">
+  <div class="section-header">
+    <span class="section-badge badge-ltf">PHASE 03</span>
+    <h2 class="section-title">Lower Timeframe Application</h2>
+  </div>
+  <div class="days-grid" id="grid-ltf"></div>
+</section>
+
+<footer>
+  SMART MONEY MASTERY &nbsp;|&nbsp; YOUR 30-DAY JOURNEY &nbsp;|&nbsp; STAY CONSISTENT
+</footer>
+
+<!-- ─── ALARM FAB ─── -->
+<button class="alarm-fab" id="alarmFab" onclick="toggleAlarm()" title="Set Daily Alarm">⏰</button>
+
+<!-- ─── ALARM PANEL ─── -->
+<div class="alarm-panel hidden" id="alarmPanel">
+  <div class="alarm-header" onclick="toggleAlarm()">
+    <span class="alarm-title">⏰ DAILY ALARM</span>
+    <button class="alarm-close">✕</button>
+  </div>
+  <div class="alarm-body">
+    <span class="alarm-label">// MESSAGE</span>
+    <textarea class="alarm-msg-input" id="alarmMsg" placeholder="e.g. Time to trade smarter 🔥" maxlength="80"></textarea>
+    <span class="alarm-label">// SET TIME</span>
+    <div class="alarm-time-row">
+      <input type="time" class="alarm-time-input" id="alarmTime" />
+      <select class="ampm-select" id="alarmAmPm">
+        <option value="AM">AM</option>
+        <option value="PM">PM</option>
+      </select>
+    </div>
+    <button class="alarm-set-btn" onclick="setAlarm()">SET ALARM</button>
+    <div class="alarm-status" id="alarmStatus"></div>
+  </div>
+</div>
+
+<!-- ─── MOTIVATION TOAST ─── -->
+<div class="moto-toast" id="motoToast" style="display:none;">
+  <button class="moto-dismiss" onclick="dismissMoto()">✕</button>
+  <div class="moto-quote" id="motoQuote"></div>
+  <div class="moto-attr" id="motoAttr"></div>
+</div>
+
+<!-- ─── ALARM RINGING OVERLAY ─── -->
+<div class="ring-overlay" id="ringOverlay">
+  <div class="ring-icon">⏰</div>
+  <div class="ring-msg" id="ringMsg">TIME TO LEARN</div>
+  <div class="ring-sub">Your daily trading session starts now.</div>
+  <button class="ring-dismiss" onclick="dismissRing()">DISMISS</button>
+</div>
+
+<!-- ─── NOTIFICATION TOAST ─── -->
+<div class="notif-toast" id="notifToast">
+  <div class="notif-title">// ALARM FIRED</div>
+  <div class="notif-msg" id="notifMsg"></div>
+</div>
+
+<script>
+// ══════════════════════════════════════════
+// DATA — 30-DAY ROADMAP
+// ══════════════════════════════════════════
+const ROADMAP = [
+  // ─── SMART MONEY PHASE (Days 1–16) ───
+  {
+    day: 1, section: 'sm', phase: 'SMART MONEY',
+    title: 'Platform Setup & Pair Selection',
+    topic: 'TradingView Setup',
+    study: 'Watch the TradingView Setup video. Learn the interface: charts, indicators toolbar, watchlist panel, drawing tools, alerts. Create your account, choose a clean chart layout.',
+    practice: 'Set up your TradingView workspace from scratch. Add BTC/USDT, ETH/USDT, and 3 other major pairs to your watchlist. Practice switching between timeframes (1D, 4H, 1H, 15M).',
+    focus: 'Spend extra time building a clean, distraction-free chart setup. The tool is your cockpit — master it now.'
+  },
+  {
+    day: 2, section: 'sm', phase: 'SMART MONEY',
+    title: 'Refining Your Watchlist',
+    topic: 'Watch List Refinement',
+    study: 'Watch the Refining Your Watchlist video. Understand why fewer pairs = more focus. Learn how to pick high-liquidity, trending pairs.',
+    practice: 'Narrow your watchlist to 5 top pairs only. For each pair, open a 1D chart and describe in your own words what price has been doing this month — up, down, ranging?',
+    focus: 'The discipline of a curated watchlist. Resist adding too many. Quality over quantity is the smart money mindset.'
+  },
+  {
+    day: 3, section: 'sm', phase: 'SMART MONEY',
+    title: 'Understanding Market Structure',
+    topic: 'Market Structure',
+    study: 'Watch the Market Structure video. Learn the core concept: Higher Highs (HH), Higher Lows (HL) = bullish structure. Lower Highs (LH), Lower Lows (LL) = bearish. Learn structure breaks (BOS).',
+    practice: 'On each of your 5 pairs, open the 1D chart and manually label the last 20 candles with HH, HL, LH, LL. Identify where structure last broke.',
+    focus: 'Market structure is the FOUNDATION. Everything else builds on this. Label until it feels automatic.'
+  },
+  {
+    day: 4, section: 'sm', phase: 'SMART MONEY',
+    title: 'Supply & Demand Zones',
+    topic: 'Supply and Demand',
+    study: 'Watch the Supply and Demand video. Learn how institutional orders create zones. Supply = where sellers dominate. Demand = where buyers dominate. Learn how to draw valid zones.',
+    practice: 'On 2 pairs (BTC and ETH), identify and draw the 3 most significant supply zones and 3 demand zones on the 4H chart. No more than that — keep it clean.',
+    focus: 'Drawing zones with precision. They must start from a strong move away (the "departure"). Sloppy zones = wrong trades.'
+  },
+  {
+    day: 5, section: 'sm', phase: 'SMART MONEY',
+    title: 'Market Efficiency & Imbalances',
+    topic: 'Market Efficiency / Imbalances',
+    study: 'Watch the Market Efficiency/Imbalances video. Learn what a Fair Value Gap (FVG) / Imbalance is — a 3-candle pattern where middle candle leaves a gap. Understand why price revisits these.',
+    practice: 'On the 1H chart of BTC, hunt for the last 5 FVGs. Draw a box on each. Note whether price has returned to fill them or not. Do the same for ETH.',
+    focus: 'Identifying FVGs quickly by scanning left to right. Train your eye — speed and accuracy come with repetition.'
+  },
+  {
+    day: 6, section: 'sm', phase: 'SMART MONEY',
+    title: 'Liquidity — The Fuel of Markets',
+    topic: 'Liquidity',
+    study: 'Watch the Liquidity video. Learn that price moves to collect liquidity: stop hunts, equal highs/lows, trendline liquidity, and swing point liquidity.',
+    practice: 'On each pair in your watchlist, mark the obvious equal highs and equal lows on the 4H chart. These are liquidity pools. Ask: "Where would stops be sitting?" every time you look at a chart.',
+    focus: 'Changing your mindset — stop thinking like retail, start thinking where the institutions are hunting. This is a perspective shift.'
+  },
+  {
+    day: 7, section: 'sm', phase: 'SMART MONEY',
+    title: 'Review & Consolidation Day',
+    topic: 'Review: Structure + S&D + FVG + Liquidity',
+    study: 'No new video today. Re-read your notes from Days 3–6. Rewatch any segment you felt unclear about.',
+    practice: 'Pick ONE pair (BTC). On a blank 4H chart, annotate everything you know: structure, supply/demand, FVGs, liquidity. Then do the same on 1H. Compare the two charts.',
+    focus: 'Integration. Make sure these 4 concepts feel connected, not separate. They all work together to describe the same market story.'
+  },
+  {
+    day: 8, section: 'sm', phase: 'SMART MONEY',
+    title: 'Momentum — Knowing When to Act',
+    topic: 'Momentum',
+    study: 'Watch the Momentum video. Learn how momentum confirms direction — strong bullish/bearish candles, volume clues, the difference between momentum and noise.',
+    practice: 'Look at the last 30 candles on each watchlist pair (4H). Circle every candle that shows strong momentum. Write next to each: "bullish impulse" or "bearish impulse". Note where momentum shifted.',
+    focus: 'Distinguishing genuine momentum from false breaks. Patience — wait for the market to SHOW you direction, not guess it.'
+  },
+  {
+    day: 9, section: 'sm', phase: 'SMART MONEY',
+    title: 'Refined Entries',
+    topic: 'Refined Entries',
+    study: 'Watch the Refined Entries video. Learn how smart money enters with precision — not at a zone, but inside it. Lower timeframe confirmation within a higher timeframe zone.',
+    practice: 'On your 4H chart, find an active demand zone on BTC. Drop to 15M. See if there is a BOS or FVG within that zone you could use as an entry. Screenshot and journal it.',
+    focus: 'This is where your edge lives. Spend the most time on this today. The difference between a pro and amateur is entry precision.'
+  },
+  {
+    day: 10, section: 'sm', phase: 'SMART MONEY',
+    title: 'Trade Types — Continuation',
+    topic: 'Trade Types: Continuation',
+    study: 'Watch the Trade Types / Continuation & Consolidation video (first half — focus on Continuation). A continuation trade rides an existing trend after a pullback to a key zone.',
+    practice: 'Find a continuation setup on any pair in your watchlist on the 4H chart. Draw the entry, stop, and at least 2 targets. Write: "This is valid because ___" (structure, zone, momentum).',
+    focus: 'Understanding WHEN to trade a continuation vs when to sit out. Continuation = trend is intact. If structure is broken, it is not a continuation trade.'
+  },
+  {
+    day: 11, section: 'sm', phase: 'SMART MONEY',
+    title: 'Trade Types — Consolidation',
+    topic: 'Trade Types: Consolidation',
+    study: 'Watch the Consolidation trade section. Learn how to identify a range, find the extremes (liquidity on both sides), and trade the break.',
+    practice: 'Find a pair in consolidation on the 4H chart. Mark the range high and low. Mark where liquidity sits above and below. Plan both a bullish and bearish breakout scenario.',
+    focus: 'Patience in consolidation — most traders lose here by chasing. Train yourself to wait for the break and retest, not the initial move.'
+  },
+  {
+    day: 12, section: 'sm', phase: 'SMART MONEY',
+    title: 'Fibonacci — Precision Levels',
+    topic: 'Fibonacci',
+    study: 'Watch the Fibonacci video. Learn to draw the fib retracement from swing low to swing high (bullish) or swing high to swing low (bearish). Focus on 0.5, 0.618, 0.705, 0.79 levels.',
+    practice: 'On the last 3 significant swings on BTC 4H, draw the fib tool. Mark which level price reacted from. Note if it coincides with a supply/demand zone — that is confluence.',
+    focus: 'Fib + Zone confluence. This is where your entries become high-probability. Do not use fib in isolation — always stack it with other reasons.'
+  },
+  {
+    day: 13, section: 'sm', phase: 'SMART MONEY',
+    title: 'The Fractal Nature of Markets',
+    topic: 'Fractal Nature of the Market',
+    study: 'Watch the Fractal Nature video. Understand that the same patterns appear on every timeframe. A trade system that works on the 1D also works on the 15M — it is the same structure.',
+    practice: 'Open BTC on 1W, 1D, 4H, 1H, 15M simultaneously. Identify the trend on each timeframe. Draw a table: TF | Trend | Key Zone. Notice how they are nested — higher TF tells the story.',
+    focus: 'Top-down thinking. This is the most important mindset shift in the entire course. Everything you do from now on must start from the highest timeframe.'
+  },
+  {
+    day: 14, section: 'sm', phase: 'SMART MONEY',
+    title: 'Workoff Theory',
+    topic: 'Workoff Theory Simplified',
+    study: 'Watch the Workoff Theory video. Understand how price "works off" imbalances — it returns to FVGs, fills orders, then continues. This explains why pullbacks happen before continuation.',
+    practice: 'On BTC 4H, mark the last 3 FVGs that price returned to fill. After the fill, did price continue in the original direction? Log your observations. Look for the pattern.',
+    focus: 'Connecting Workoff to your entries. When price pulls back into a zone AND fills an FVG, that is a high-probability entry area. Combine today with Day 9 knowledge.'
+  },
+  {
+    day: 15, section: 'sm', phase: 'SMART MONEY',
+    title: 'Live Trade Examples — HTF',
+    topic: 'HTF Continuation + HTF Reversal Examples',
+    study: 'Watch both the High Timeframe Continuation Trade Example and High Timeframe Reversal Trade Example videos back to back. Study the presenter\'s entire top-down process.',
+    practice: 'Find one potential HTF continuation and one HTF reversal setup on your watchlist right now. Map them out fully: structure → zone → entry → stop → target. Do not execute — just plan.',
+    focus: 'Process replication. Your goal is to think exactly like the video. Pause, rewind, annotate. The example trades are the blueprint — copy the thinking pattern first.'
+  },
+  {
+    day: 16, section: 'sm', phase: 'SMART MONEY',
+    title: 'Live Trade Examples — LTF',
+    topic: 'LTF Continuation + LTF Reversal Examples',
+    study: 'Watch both the Low Timeframe Continuation Trade Example and Low Timeframe Reversal Trade Example videos. Notice how LTF entries use the HTF narrative.',
+    practice: 'Find one LTF continuation and one LTF reversal setup on any pair. Go through the full top-down: 1D → 4H → 1H → 15M. Map the entry on 15M that aligns with 4H narrative.',
+    focus: 'Speed and fluency in the top-down process. By now you should be doing this in under 10 minutes per pair. Time yourself and improve daily.'
+  },
+
+  // ─── HTF PHASE (Days 17–23) ───
+  {
+    day: 17, section: 'htf', phase: 'HTF APPLICATION',
+    title: 'Introduction to HTF Analysis',
+    topic: 'HTF Introduction',
+    study: 'Watch the HTF Introduction video. Understand why Higher Timeframe is the "compass" of all your trading. The HTF tells you the bias — long or short — before you even look at entries.',
+    practice: 'For all 5 pairs on your watchlist: open 1W and 1D only. Write one sentence bias for each: "BTC is bullish on HTF because ___." Base it purely on structure and zones.',
+    focus: 'Simplicity in HTF reading. The higher timeframe should give you clarity, not confusion. If it looks messy, stay out. Strong, clean structure = trade. Choppy = skip.'
+  },
+  {
+    day: 18, section: 'htf', phase: 'HTF APPLICATION',
+    title: 'Top-Down HTF Process',
+    topic: 'HTF Application (Top Down)',
+    study: 'Watch the HTF Application (Top Down) video. This is the full process: Weekly → Daily → 4H. Learn how each frame refines your view. The highest timeframe sets the bias; lower timeframes set the zone.',
+    practice: 'Run the full top-down on BTC and ETH. Start at 1W: mark structure and key zones. Move to 1D: refine. Move to 4H: find the entry zone. Document every step.',
+    focus: 'Discipline in the process. Do NOT skip timeframes. Every step narrows your focus. Rushing the top-down is how traders enter in the wrong direction.'
+  },
+  {
+    day: 19, section: 'htf', phase: 'HTF APPLICATION',
+    title: 'Refining HTF Zones',
+    topic: 'Refining Zones (HTF)',
+    study: 'Watch the Refining Zones video. Learn how to take a wide zone from the 1D and refine it using the 4H. The goal is a tight, precise area to watch.',
+    practice: 'Take the zones you drew on Day 18. Now refine each one on the 4H. Redraw tighter boxes. Also check for FVGs or order blocks within the zone that give it extra confluence.',
+    focus: 'Precision is profit protection. A wide zone = wide stop = poor risk/reward. Refine until your zones are tight enough for a logical stop placement.'
+  },
+  {
+    day: 20, section: 'htf', phase: 'HTF APPLICATION',
+    title: 'Finding HTF Setups & Entries',
+    topic: 'Finding Setups (HTF) + Finding Entries (HTF)',
+    study: 'Watch both the Finding Setups (HTF) and Finding Entries (HTF) videos. Learn how a "setup" is the context (HTF narrative + zone) and an "entry" is the LTF confirmation within it.',
+    practice: 'Scan your 5 pairs. Identify any pair that has a valid HTF setup (price near a refined zone, with clear bias). For valid setups, drop to 1H and look for an entry trigger (BOS, FVG, order block).',
+    focus: 'The setup vs entry distinction. Never enter just because price is at a zone. Wait for the entry confirmation on the lower timeframe within the zone.'
+  },
+  {
+    day: 21, section: 'htf', phase: 'HTF APPLICATION',
+    title: 'Targets & Stop Placement',
+    topic: 'Finding Targets (HTF) + Positioning Stops (HTF)',
+    study: 'Watch the Finding Targets (HTF) and Positioning Stops (HTF) videos. Targets should be the next significant HTF zone or liquidity pool. Stops go behind the invalidation point of the setup.',
+    practice: 'Take the setups from Day 20. For each, define: (1) entry price, (2) stop loss — where does the setup become invalid?, (3) target 1 (conservative), (4) target 2 (extended). Calculate the RR ratio.',
+    focus: 'Only take trades with at minimum 1:2 Risk-to-Reward. If the math does not work, the trade does not exist. This discipline separates pros from gamers.'
+  },
+  {
+    day: 22, section: 'htf', phase: 'HTF APPLICATION',
+    title: 'HTF Trade Management',
+    topic: 'Trade Management (HTF)',
+    study: 'Watch the Trade Management (HTF) video. Learn how to manage once you are in: partial profits at target 1, move stop to break-even, let remaining position run to target 2.',
+    practice: 'Using your planned trades from Day 21, write a detailed trade plan for each: entry trigger, partial exit at TP1 (what %), stop to BE after TP1, hold to TP2. Practice this mentally — simulate the entire trade.',
+    focus: 'Emotionless execution. Trade management is pre-planned BEFORE entry. If you are making management decisions while in a live trade, you are already too late. Plan everything in advance.'
+  },
+  {
+    day: 23, section: 'htf', phase: 'HTF APPLICATION',
+    title: 'HTF Trade Examples — Full Review',
+    topic: 'HTF Reversal Example + HTF Continuation Example',
+    study: 'Watch both the HTF Reversal Example and HTF Continuation Example. Watch each video twice — once for the concept, once to manually replicate on your own chart before the presenter reveals the answer.',
+    practice: 'Find one live HTF reversal and one HTF continuation candidate on your pairs. Write a full one-page trade plan for each. Include screenshots at every timeframe you analyzed.',
+    focus: 'Quality of your trade plans. They should be detailed enough that someone else could execute them. Vague plans = vague results.'
+  },
+
+  // ─── LTF PHASE (Days 24–30) ───
+  {
+    day: 24, section: 'ltf', phase: 'LTF APPLICATION',
+    title: 'LTF Introduction & Sessions',
+    topic: 'LTF Introduction + Sessions Timing',
+    study: 'Watch LTF Introduction and Sessions Timing videos. Learn the 3 key sessions: Asia (ranging, liquidity building), London (trend initiation), New York (continuation/reversal). Each has a personality.',
+    practice: 'For the next 2 days, observe live charts during each session (even briefly). Note what BTC/ETH does during Asia (tight range?), London open (break?), NY open (continuation or fake?). Log everything.',
+    focus: 'Session awareness changes everything about your timing. The best LTF entries happen at session opens — especially London and NY. Know the clock, know the market.'
+  },
+  {
+    day: 25, section: 'ltf', phase: 'LTF APPLICATION',
+    title: 'Asia Liquidity System',
+    topic: 'Asia Liquidity System',
+    study: 'Watch the Asia Liquidity System video. Asia builds a range. That range creates liquidity (stop clusters) above and below. London/NY then hunts that liquidity before the real move.',
+    practice: 'On BTC 15M, identify the Asia session range from the last 3 trading days. Mark the highs and lows of Asia. Did London break above or below? Which direction did the real move go after the sweep? Log results.',
+    focus: 'The Asia sweep + London continuation is a high-probability pattern. Drill it until it is automatic. This alone can be a complete trading strategy.'
+  },
+  {
+    day: 26, section: 'ltf', phase: 'LTF APPLICATION',
+    title: 'LTF Psychology & Top-Down',
+    topic: 'LTF Psychological Considerations + Asia Liquidity Top Down Process',
+    study: 'Watch both the LTF Psychological Considerations and Asia Liquidity Top Down Process videos. Psychology = managing the speed/noise of LTF. Avoid chasing, revenge trading, overtrading.',
+    practice: 'Write a personal "pre-trade checklist" of 5 rules based on the psychological video. Examples: "I will not enter if I have already had 2 losses today." "I will not trade during high-impact news." Make them personal.',
+    focus: 'The top-down process applied to Asia liquidity. Practice: 1D bias → 4H zone → 1H setup → 15M Asia sweep → 5M entry. Run this on 2 pairs today.'
+  },
+  {
+    day: 27, section: 'ltf', phase: 'LTF APPLICATION',
+    title: 'LTF Standard Process & Entries',
+    topic: 'LTF Standard Top Down Process + LTF Entries',
+    study: 'Watch LTF Standard Top Down Process and LTF Entries. Learn the standard LTF drill that doesn\'t rely on Asia session — works at any time. Entry triggers: BOS on 5M/1M, FVG, order block.',
+    practice: 'Run the standard LTF top-down on all 5 pairs. For any pair where the 1H shows a refined zone, drop to 5M and look for an entry. Document the trigger you would use (BOS, FVG, OB). No entry without a trigger.',
+    focus: 'Entry precision on LTF. The entry trigger is non-negotiable — it is the evidence that the zone is holding. No trigger = no trade. Period.'
+  },
+  {
+    day: 28, section: 'ltf', phase: 'LTF APPLICATION',
+    title: 'LTF Targets & Stops',
+    topic: 'LTF Targets + LTF Stop Positioning',
+    study: 'Watch LTF Targets and LTF Stop Positioning. LTF targets: next FVG, previous structure point, or session extreme. Stops: behind the FVG or below the order block that gave the entry.',
+    practice: 'For every planned trade this week, now add precise LTF targets and stops. Recalculate RR for each. Remove any trade plan with less than 1:2 RR. Adjust entry if needed to improve the ratio.',
+    focus: 'The stop placement is as important as the entry. A stop that is too tight gets clipped by noise. A stop behind a clear invalidation level gives your trade room to breathe.'
+  },
+  {
+    day: 29, section: 'ltf', phase: 'LTF APPLICATION',
+    title: 'LTF Trade Management & Conclusion',
+    topic: 'LTF Trade Management + LTF Conclusion',
+    study: 'Watch LTF Trade Management and LTF Conclusion. LTF management is faster — partials at first FVG fill, move stop to entry, let runner go. The conclusion video ties the full system together.',
+    practice: 'Write a complete personal trading system summary — 1 page maximum. Include: your timeframes, your entry conditions, your stop rules, your target rules, your management rules. This is YOUR playbook.',
+    focus: 'Consolidation of everything. After 29 days, you should be able to write your rules clearly. If you cannot explain it simply, you do not know it well enough yet. Rewatch weak areas.'
+  },
+  {
+    day: 30, section: 'ltf', phase: 'LTF APPLICATION',
+    title: 'LTF Live Examples — Full System Day',
+    topic: 'LTF Reversal Example + LTF Continuation Example',
+    study: 'Watch LTF Reversal Example and LTF Continuation Example videos. On Day 30, you are the analyst. Pause the videos, predict the next move BEFORE the presenter, then check.',
+    practice: 'Find one LTF reversal and one LTF continuation setup live on your pairs. Write the full trade plan (bias → zone → entry → stop → targets → management). Post your analysis — write it as if explaining to someone else.',
+    focus: 'YOU are the system now. The 30-day program has given you the framework. Your job from Day 31 onward: practice daily, journal every trade, review weekly. Mastery comes through repetition — not just once, but thousands of times.'
+  },
+];
+
+// ══════════════════════════════════════════
+// RENDER CARDS
+// ══════════════════════════════════════════
+const STORAGE_KEY = 'smm_completed';
+let completed = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+
+function renderCards() {
+  const grids = { sm: 'grid-sm', htf: 'grid-htf', ltf: 'grid-ltf' };
+  Object.values(grids).forEach(id => document.getElementById(id).innerHTML = '');
+
+  ROADMAP.forEach(d => {
+    const done = completed.includes(d.day);
+    const gridId = grids[d.section];
+    const grid = document.getElementById(gridId);
+
+    const card = document.createElement('div');
+    card.className = `day-card${done ? ' completed' : ''}`;
+    card.id = `day-${d.day}`;
+
+    card.innerHTML = `
+      <div class="day-header" onclick="toggleCard(${d.day})">
+        <div class="day-num">D${String(d.day).padStart(2,'0')}</div>
+        <div class="day-info">
+          <div class="day-title">${d.title}</div>
+          <div class="day-tag">▸ ${d.phase} &nbsp;|&nbsp; ${d.topic}</div>
+        </div>
+        <div class="day-checkbox${done ? ' checked' : ''}" onclick="event.stopPropagation(); toggleDay(${d.day})" title="Mark complete">
+          <svg width="12" height="10" viewBox="0 0 12 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M1 5L4.5 8.5L11 1" stroke="#0a0c10" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="day-toggle">▾</div>
+      </div>
+      <div class="day-body">
+        <div class="day-sections">
+          <div class="day-section-box">
+            <div class="dsb-label">// STUDY</div>
+            <p>${d.study}</p>
+          </div>
+          <div class="day-section-box">
+            <div class="dsb-label practice">// PRACTICE</div>
+            <p>${d.practice}</p>
+          </div>
+          <div class="day-section-box">
+            <div class="dsb-label focus">// KEY FOCUS</div>
+            <p>${d.focus}</p>
+          </div>
+        </div>
+        <div class="time-pill">⏱ 1H 30M SESSION &nbsp;|&nbsp; DAY ${d.day} OF 30</div>
+      </div>
+    `;
+    grid.appendChild(card);
+  });
+
+  updateStats();
+}
+
+function toggleCard(day) {
+  const card = document.getElementById(`day-${day}`);
+  card.classList.toggle('open');
+}
+
+function toggleDay(day) {
+  if (completed.includes(day)) {
+    completed = completed.filter(d => d !== day);
+  } else {
+    completed.push(day);
+  }
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(completed));
+  renderCards();
+}
+
+function updateStats() {
+  const done = completed.length;
+  const left = 30 - done;
+  const hours = done * 1.5;
+  document.getElementById('progressBar').style.width = `${(done/30)*100}%`;
+  document.getElementById('progressLabel').textContent = `${done} / 30 DAYS COMPLETED`;
+  document.getElementById('statDone').textContent = done;
+  document.getElementById('statLeft').textContent = left;
+  document.getElementById('statHours').textContent = `${hours}h`;
+}
+
+// ══════════════════════════════════════════
+// NAV ACTIVE
+// ══════════════════════════════════════════
+function setActive(el) {
+  document.querySelectorAll('.nav-menu a').forEach(a => a.classList.remove('active'));
+  el.classList.add('active');
+}
+
+// ══════════════════════════════════════════
+// ALARM SYSTEM
+// ══════════════════════════════════════════
+const ALARM_KEY = 'smm_alarm';
+let alarmTimeout = null;
+let alarmInterval = null;
+
+function toggleAlarm() {
+  const panel = document.getElementById('alarmPanel');
+  const fab = document.getElementById('alarmFab');
+  const isHidden = panel.classList.contains('hidden');
+  panel.classList.toggle('hidden');
+  fab.classList.toggle('hidden', !isHidden);
+  if (!isHidden) { fab.classList.remove('hidden'); }
+}
+
+function setAlarm() {
+  const timeInput = document.getElementById('alarmTime').value;
+  const ampm = document.getElementById('alarmAmPm').value;
+  const msg = document.getElementById('alarmMsg').value.trim() || 'Time to study Smart Money! 📈';
+  const status = document.getElementById('alarmStatus');
+
+  if (!timeInput) { status.textContent = '⚠ Please select a time.'; status.style.color = '#ff6b6b'; return; }
+
+  // Parse time
+  let [hours, minutes] = timeInput.split(':').map(Number);
+
+  // Convert to 24h for calculations
+  if (ampm === 'PM' && hours !== 12) hours += 12;
+  if (ampm === 'AM' && hours === 12) hours = 0;
+
+  const alarmData = { hours, minutes, msg, ampm, timeStr: timeInput };
+  localStorage.setItem(ALARM_KEY, JSON.stringify(alarmData));
+
+  status.style.color = 'var(--green)';
+  status.textContent = `✓ Alarm set for ${timeInput} ${ampm}`;
+
+  scheduleAlarm(alarmData);
+
+  // Request notification permission
+  if ('Notification' in window && Notification.permission === 'default') {
+    Notification.requestPermission();
+  }
+}
+
+function scheduleAlarm(alarmData) {
+  if (alarmInterval) clearInterval(alarmInterval);
+
+  alarmInterval = setInterval(() => {
+    const now = new Date();
+    if (now.getHours() === alarmData.hours && now.getMinutes() === alarmData.minutes && now.getSeconds() < 5) {
+      fireAlarm(alarmData.msg);
+    }
+  }, 3000);
+}
+
+function fireAlarm(msg) {
+  // On-screen ring
+  document.getElementById('ringMsg').textContent = msg.toUpperCase();
+  document.getElementById('ringOverlay').classList.add('active');
+
+  // Browser notification
+  if ('Notification' in window && Notification.permission === 'granted') {
+    new Notification('⏰ Smart Money Mastery', {
+      body: msg,
+      icon: 'https://fav.farm/📈'
+    });
+  }
+
+  // Service Worker notification (background)
+  if ('serviceWorker' in navigator && navigator.serviceWorker.controller) {
+    navigator.serviceWorker.controller.postMessage({ type: 'ALARM', msg });
+  }
+
+  // Also show in-page notif toast
+  showNotif(msg);
+}
+
+function dismissRing() {
+  document.getElementById('ringOverlay').classList.remove('active');
+}
+
+function showNotif(msg) {
+  const t = document.getElementById('notifToast');
+  document.getElementById('notifMsg').textContent = msg;
+  t.style.display = 'block';
+  setTimeout(() => t.style.display = 'none', 6000);
+}
+
+// Restore alarm on load
+function restoreAlarm() {
+  const saved = localStorage.getItem(ALARM_KEY);
+  if (!saved) return;
+  const alarmData = JSON.parse(saved);
+  document.getElementById('alarmTime').value = alarmData.timeStr || '';
+  document.getElementById('alarmAmPm').value = alarmData.ampm || 'AM';
+  document.getElementById('alarmMsg').value = alarmData.msg || '';
+  document.getElementById('alarmStatus').textContent = `✓ Alarm active: ${alarmData.timeStr} ${alarmData.ampm}`;
+  document.getElementById('alarmStatus').style.color = 'var(--green)';
+  scheduleAlarm(alarmData);
+}
+
+// ══════════════════════════════════════════
+// MOTIVATION SYSTEM
+// ══════════════════════════════════════════
+const QUOTES = [
+  { q: "The market is a device for transferring money from the impatient to the patient.", a: "Warren Buffett" },
+  { q: "You don't need to predict the market. You need to read it.", a: "Smart Money Principle" },
+  { q: "Discipline is the bridge between your trading goals and your results.", a: "Jim Rohn (adapted)" },
+  { q: "Amateurs focus on profits. Professionals focus on process.", a: "Mark Douglas (adapted)" },
+  { q: "Every expert was once a beginner who refused to quit.", a: "Anonymous" },
+  { q: "The best trade is the one you planned yesterday and executed today without emotion.", a: "ICT Principle" },
+  { q: "Price seeks liquidity. Know where liquidity is and you know where price is going.", a: "Smart Money Principle" },
+  { q: "Consistency over perfection. One good trade a day is more than enough.", a: "Trading Wisdom" },
+  { q: "The market will teach you everything — if you are patient enough to listen.", a: "Anonymous" },
+  { q: "Structure is the skeleton. Liquidity is the blood. Momentum is the heartbeat.", a: "Smart Money Mastery" },
+  { q: "Stop hunting setups. Start reading the story the market is already telling you.", a: "ICT Principle" },
+  { q: "Risk management is not a limitation. It is the foundation of longevity.", a: "Trading Axiom" },
+  { q: "The timeframe you choose is the lens. Make sure you are looking through the right one first.", a: "Smart Money Principle" },
+  { q: "Your worst enemy in trading is not the market — it is the version of you that makes decisions when emotional.", a: "Mark Douglas" },
+  { q: "Show up. Do the work. Study the charts. Then show up again tomorrow.", a: "Smart Money Mastery" },
+];
+
+let motoIndex = 0;
+
+function showMoto() {
+  const q = QUOTES[motoIndex % QUOTES.length];
+  motoIndex++;
+  document.getElementById('motoQuote').textContent = `"${q.q}"`;
+  document.getElementById('motoAttr').textContent = `— ${q.a}`;
+
+  const toast = document.getElementById('motoToast');
+  toast.style.display = 'block';
+  toast.classList.remove('fading');
+
+  // After 40 seconds, fade
+  setTimeout(() => {
+    toast.classList.add('fading');
+    setTimeout(() => { toast.style.display = 'none'; }, 3000);
+  }, 40000);
+}
+
+function dismissMoto() {
+  const toast = document.getElementById('motoToast');
+  toast.classList.add('fading');
+  setTimeout(() => { toast.style.display = 'none'; }, 1000);
+}
+
+// ══════════════════════════════════════════
+// SERVICE WORKER (for background notifications)
+// ══════════════════════════════════════════
+const SW_CODE = `
+self.addEventListener('message', (event) => {
+  if (event.data && event.data.type === 'ALARM') {
+    self.registration.showNotification('⏰ Smart Money Mastery', {
+      body: event.data.msg,
+      icon: 'https://fav.farm/📈',
+      badge: 'https://fav.farm/📊'
+    });
+  }
+});
+self.addEventListener('notificationclick', (event) => {
+  event.notification.close();
+  event.waitUntil(clients.openWindow(self.location.origin));
+});
+`;
+
+function registerServiceWorker() {
+  if (!('serviceWorker' in navigator)) return;
+  const blob = new Blob([SW_CODE], { type: 'application/javascript' });
+  const swUrl = URL.createObjectURL(blob);
+  navigator.serviceWorker.register(swUrl).catch(() => {});
+}
+
+// ══════════════════════════════════════════
+// INIT
+// ══════════════════════════════════════════
+document.addEventListener('DOMContentLoaded', () => {
+  renderCards();
+  restoreAlarm();
+  registerServiceWorker();
+
+  // Show first motivation after page loads
+  setTimeout(showMoto, 1500);
+
+  // Repeat every 30 minutes
+  setInterval(showMoto, 30 * 60 * 1000);
+
+  // Request notification permission proactively
+  if ('Notification' in window && Notification.permission === 'default') {
+    setTimeout(() => Notification.requestPermission(), 5000);
+  }
+});
+</script>
+</body>
+</html>
